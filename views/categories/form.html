@@ -1,0 +1,15 @@
+<? include_once("views/common/header.html"); ?>
+
+<p><?= $this->checkErrors->showErrors($errors); ?></p>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="name_category" class="form-label">Название категории</label>
+        <input type="text" class="form-control" id="name_category" name="category_name" value="<?= isset ($category) ? $category['category_name'] : '';  ?>">
+    </div>
+    <button type="submit" class="btn btn-primary">
+        <?= isset ($category) ? 'Изменить' : 'Добавить';  ?>
+    </button>
+</form>
+
+<? include_once("views/common/footer.html"); ?>

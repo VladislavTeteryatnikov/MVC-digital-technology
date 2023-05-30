@@ -1,0 +1,43 @@
+<? include_once("views/common/header.html"); ?>
+
+<form method="post">
+  <div class="mb-3">
+    <label for="name_product" class="form-label">Название товара</label>
+    <input type="text" class="form-control" id="name_product" name="product_name" value="<?= isset ($product) ? $product['product_name'] : ''; ?>">
+  </div>
+  <div class="mb-3">
+    <label for="price_product" class="form-label">Цена</label>
+    <input type="text" class="form-control" id="price_product" name="product_price" value="<?= isset ($product) ? $product['product_price'] : ''; ?>">
+  </div>
+  <div class="mb-3">
+    <label for="availability_product" class="form-label">Наличие</label>
+    <input type="text" class="form-control" id="availability_product" name="product_availability" value="<?= isset ($product) ? $product['product_availability'] : ''; ?>">
+  </div>
+  <div class="mb-3">
+    <label for="category_product">Категория</label>
+    <select class="form-select" aria-label="Default select example" id="category_product" name="product_category">
+      <? foreach ($categories as $category): ?>
+      <option <?= (isset ($product) && $category['category_id'] === $product['product_category_id']) ? 'selected' : '' ?>
+              value="<?= $category['category_id']; ?>"><?= $category['category_name']; ?></option>
+      <? endforeach; ?>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="manufacturer_product">Производитель</label>
+    <select class="form-select" aria-label="Default select example" id="manufacturer_product" name="product_manufacturer">
+      <? foreach ($manufacturers as $manufacturer): ?>
+      <option <?= (isset ($product) && $manufacturer['manufacturer_id'] === $product['product_manufacturer_id']) ? 'selected' : '' ?>
+              value="<?= $manufacturer['manufacturer_id']; ?>"><?= $manufacturer['manufacturer_name']; ?></option>
+      <? endforeach; ?>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="description_product" class="form-label">Описание товара</label>
+    <textarea class="form-control" aria-label="With textarea" id="description_product" name="product_description"><?= isset ($product) ? $product['product_description'] : ''; ?></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">
+    <?= isset($product) ? 'Изменить' : 'Добавить';  ?>
+  </button>
+</form>
+
+<? include_once("views/common/footer.html"); ?>

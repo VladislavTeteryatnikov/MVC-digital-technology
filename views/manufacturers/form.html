@@ -1,0 +1,15 @@
+<? include_once("views/common/header.html"); ?>
+
+<p><?= $this->checkErrors->showErrors($errors); ?></p>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="name_manufacturer" class="form-label">Название производителя</label>
+        <input type="text" class="form-control" id="name_manufacturer" name="name_manufacturer" value="<?= isset ($manufacturer) ? $manufacturer['manufacturer_name'] : '';  ?>">
+    </div>
+    <button type="submit" class="btn btn-primary">
+        <?= isset ($manufacturer) ? 'Изменить' : 'Добавить';  ?>
+    </button>
+</form>
+
+<? include_once("views/common/footer.html"); ?>

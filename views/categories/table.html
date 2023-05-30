@@ -1,0 +1,36 @@
+<? include_once("views/common/header.html"); ?>
+
+    <? if ($this->isAuthorized): ?>
+        <a class="btn btn-primary" href="<?= FULL_SITE_ROOT . 'category/add/'; ?>">Добавить</a>
+    <? endif; ?>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th> ID </th>
+                <th> Категория </th>
+                <? if ($this->isAuthorized): ?>
+                    <th> Действия </th>
+                <? endif; ?>
+            </tr>
+        </thead>
+        <tbody>
+            <? foreach ($categories as $category): ?>
+                <tr>
+                    <td> <?= $category['category_id']; ?></td>
+                    <td> <?= $category['category_name']; ?></td>
+                    <? if ($this->isAuthorized): ?>
+                        <td>
+                            <a class="btn btn-secondary" href="<?= FULL_SITE_ROOT . 'category/edit/' . $category['category_id']; ?>">Редактировать</a>
+                            <button type="button" class="btn btn-danger" onclick="remove('category', <?= $category['category_id']; ?>)">Удалить</button>
+                        </td>
+                    <? endif; ?>
+                </tr>
+            <? endforeach; ?>
+        </tbody>
+    </table>
+
+<? if ($total > $limit): ?>
+<?= $pagination->get(); ?>
+<? endif; ?>
+
+<? include_once("views/common/footer.html"); ?>

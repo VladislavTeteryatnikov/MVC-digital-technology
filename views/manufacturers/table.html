@@ -1,0 +1,36 @@
+<? include_once("views/common/header.html"); ?>
+
+    <? if ($this->isAuthorized): ?>
+        <a class="btn btn-primary" href="<?= FULL_SITE_ROOT . 'manufacturer/add/'; ?>">Добавить</a>
+    <? endif; ?>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th> ID </th>
+                <th> Производитель </th>
+                <? if ($this->isAuthorized): ?>
+                    <th> Действия </th>
+                <? endif; ?>
+            </tr>
+        </thead>
+        <tbody>
+            <? foreach ($manufacturers as $manufacturer): ?>
+                <tr>
+                    <td> <?= $manufacturer['manufacturer_id']; ?></td>
+                    <td> <?= $manufacturer['manufacturer_name']; ?></td>
+                    <? if ($this->isAuthorized): ?>
+                        <td>
+                            <a class="btn btn-secondary" href="<?= FULL_SITE_ROOT . 'manufacturer/edit/' . $manufacturer['manufacturer_id']; ?>">Редактировать</a>
+                            <button type="button" class="btn btn-danger" onclick="remove('manufacturer', <?= $manufacturer['manufacturer_id']; ?>)">Удалить</button>
+                        </td>
+                    <? endif; ?>
+                </tr>
+            <? endforeach; ?>
+        </tbody>
+    </table>
+
+    <? if ($total > $limit): ?>
+    <?= $pagination->get(); ?>
+    <? endif; ?>
+
+<? include_once("views/common/footer.html"); ?>
